@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.simple.mapper.ScoreMapper">
+	<!-- insert -->
+	<!-- 매개변수의 전달 parameterType -->
+	<insert id="scoreRegist"
+		parameterType="com.simple.command.ScoreVO">
+		insert into score(name, kor, eng) values ( #{name},
+		#{kor}, #{eng} )
+	</insert>
+
+	<select id="getScores" resultType="com.simple.command.ScoreVO">
+		SELECT * FROM score
+	</select>
+	
+	<delete id="scoreDelete" parameterType="com.simple.command.ScoreVO">
+		DELETE FROM score where num = #{index}
+	</delete>
+
+</mapper>
