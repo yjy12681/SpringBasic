@@ -12,11 +12,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{kor}, #{eng} )
 	</insert>
 
+	<!-- select문의 맵핑할 vo의 풀경로가 들어갑니다. -->
 	<select id="getScores" resultType="com.simple.command.ScoreVO">
-		SELECT * FROM score
+		SELECT * FROM score order by num desc
 	</select>
 	
-	<delete id="scoreDelete" parameterType="com.simple.command.ScoreVO">
+	<!-- 매개변수가 1개 일때는 ?는 변수명을 따라갑니다. -->
+	<delete id="scoreDelete" parameterType="int">
 		DELETE FROM score where num = #{index}
 	</delete>
 

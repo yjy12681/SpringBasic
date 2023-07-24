@@ -11,4 +11,67 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getTime" resultType="string">
 		select now()
 	</select>
+	
+	<!-- 파라미터타입 int, double, stirng -->
+	<!-- 매개변수가 단일값 이라면 인터페이스 이름을 따라갑니다. -->
+	<!-- 파라미터타입스트링은 생략이 가능함 -->
+	<insert id="insertOne" parameterType="string">
+		insert into score (name) values (#{name})
+	</insert>
+	
+	<!-- vo가 매개변수 인 경우에는 getter명을 따라갑니다. -->
+	<insert id="insertTwo">
+		insert into score (name, kor, eng) values (#{name}, #{kor}, #{eng} )
+	</insert>
+	
+	<insert id="insertThree">
+		insert into score (name, kor, eng) values (#{name}, #{kor}, #{eng} )
+	</insert>
+	
+	<insert id="insertFour">
+		insert into score (name, kor, eng) values (#{name}, #{kor}, #{eng} )
+	</insert>
+	
+	<update id="update1">
+		update score set name = #{name}, kor = #{kor}, eng = #{eng} where num = #{num}
+	</update>
+	
+	<!-- 셀렉트문 -->
+	<select id="selectOne" resultType="ScoreVO">
+		select * from score where num = #{num}
+	</select>
+	
+	<select id="selectTwo" resultType="map">
+		select * from score where num = #{num}
+	</select>
+	
+	<select id="selectThree" resultType="map">
+		select * from score 
+	</select>
+	<!-- M:1 조인 -->
+	<select id="joinOne" resultType="ScoreVO">
+		SELECT * FROM SCORE S LEFT JOIN MEMBER M ON S.NAME = M.ID
+	</select>
+	
+	<!-- 1:M조인 -->
+	<!-- resultMap은 1:N조인 처리 -->
+	<select id="joinTwo" resultMap="xxx">
+		SELECT * FROM MEMBER M LEFT JOIN SCORE S ON M.ID = S.NAME WHERE ID = #{name};
+	</select>
+	
+	<!-- type = orm객체 id= 명칭 -->
+	<resultMap type="com.simple.command.MemberVO" id="xxx">
+		<result column="id" property="id"/>
+		<result column="address" property="address"/>
+		<collection property="list" resultMap="yyy"/>
+	</resultMap>
+	
+	<resultMap type="ScoreVO" id="yyy">
+		<result column="num" property="num"/>
+		<result column="name" property="name"/>
+		<result column="kor" property="kor"/>
+		<result column="eng" property="eng"/>
+	</resultMap>
+	
+	
 </mapper>

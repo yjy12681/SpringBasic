@@ -6,17 +6,26 @@ public class ScoreVO {
 	private String kor;
 	private String eng;
 	
+	private String id;
+	private String address;
+	
 	public ScoreVO() {
 		
 	}
 
-	public ScoreVO(int num, String name, String kor, String eng) {
+	
+
+	public ScoreVO(int num, String name, String kor, String eng, String id, String address) {
 		super();
 		this.num = num;
 		this.name = name;
 		this.kor = kor;
 		this.eng = eng;
+		this.id = id;
+		this.address = address;
 	}
+
+
 
 	public int getNum() {
 		return num;
@@ -48,6 +57,28 @@ public class ScoreVO {
 
 	public void setEng(String eng) {
 		this.eng = eng;
+	}	
+
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "ScoreVO [num=" + num + ", name=" + name + ", kor=" + kor + ", eng=" + eng + ", id=" + id + ", address="
+				+ address + "]";
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	
